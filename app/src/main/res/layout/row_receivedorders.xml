@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/orderText"
+            android:id="@+id/eachOrderQuantity"
             android:layout_width="308dp"
             android:layout_height="match_parent"
             android:text="TextView" />

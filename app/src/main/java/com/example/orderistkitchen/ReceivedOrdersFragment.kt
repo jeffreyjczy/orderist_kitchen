@@ -1,16 +1,13 @@
 package com.example.orderistkitchen
 
-import android.app.Dialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.row_receivedorders.view.*
 
 
@@ -31,9 +28,7 @@ class ReceivedOrdersFragment : Fragment() {
         orderList.add(Orders(2, arrayListOf(Food("Beef Noodle Soup", 2), Food("Egg Fried Rice", 1))))
         orderList.add(Orders(3, arrayListOf(Food("Vegetable Stir Fry", 3), Food("Steamed Rice", 1),Food("Beef Noodle Soup", 2))))
 
-        val gsonPretty = GsonBuilder().setPrettyPrinting().create()
-        val jsonTutPretty: String = gsonPretty.toJson(orderList)
-        println(jsonTutPretty)
+
         println(orderList.size)
 
 
@@ -45,7 +40,7 @@ class ReceivedOrdersFragment : Fragment() {
     }
 
     inner class ReveivedOrdersHolder(view: View): RecyclerView.ViewHolder(view){
-        val orderText = itemView.orderText
+        val orderText = itemView.eachOrderQuantity
         val orderTableNo = itemView.orderRow
 
     }
@@ -60,7 +55,17 @@ class ReceivedOrdersFragment : Fragment() {
 
             holder.orderTableNo.setOnClickListener {
 
-                    // go to next fragment
+//                val gsonPretty = GsonBuilder().setPrettyPrinting().create()
+//                val jsonTutPretty: String = gsonPretty.toJson(orderList[position])
+//                println(jsonTutPretty)
+
+
+                // Move to next fragment
+                val bundle = Bundle().apply {
+                    putParcelable("order", orderList[position])
+                }
+                findNavController().navigate(R.id.nextAction, bundle)
+
 
             }
 
@@ -82,3 +87,5 @@ class ReceivedOrdersFragment : Fragment() {
 
 
 }
+
+

@@ -9,10 +9,21 @@
         android:id="@+id/destination_receivedOrders"
         android:name="com.example.orderistkitchen.ReceivedOrdersFragment"
         android:label="fragment_received_orders"
-        tools:layout="@layout/fragment_received_orders" />
+        tools:layout="@layout/fragment_received_orders" >
+        <action
+            android:id="@+id/nextAction"
+            app:destination="@id/destination_eachOrder" />
+    </fragment>
     <fragment
         android:id="@+id/destination_menuManagement"
         android:name="com.example.orderistkitchen.MenuManagementFragment"
         android:label="fragment_menu_management"
         tools:layout="@layout/fragment_menu_management" />
+    <fragment
+        android:id="@+id/destination_eachOrder"
+        android:name="com.example.orderistkitchen.EachOrderFragment"
+        android:label="fragment_each_order"
+        tools:layout="@layout/fragment_each_order" >
+        <argument android:name="tableOrders" />
+    </fragment>
 </navigation>
