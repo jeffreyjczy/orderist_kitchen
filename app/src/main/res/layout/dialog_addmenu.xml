@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/confirmationTitle"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:text="Add Menu" />
+
+            <TextView
+                android:id="@+id/confirmationDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Menu Name" />
+
+            <EditText
+                android:id="@+id/newMenuText"
+                android:layout_width="match_parent"
+                android:layout_height="84dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Name" />
+
+            <Button
+                android:id="@+id/confirmAddButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

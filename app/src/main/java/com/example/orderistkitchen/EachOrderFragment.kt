@@ -10,14 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.navigation.NavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.row_eachorder.view.*
-import kotlinx.android.synthetic.main.row_receivedorders.view.*
 import kotlinx.android.synthetic.main.row_receivedorders.view.eachOrderQuantity
 
 
@@ -92,7 +88,7 @@ class EachOrderFragment : Fragment() {
                 dismissButton.setOnClickListener {
                     orderDialog.dismiss()
                 }
-                val confirmButton = dialogBinding.findViewById<Button>(R.id.confirmButton)
+                val confirmButton = dialogBinding.findViewById<Button>(R.id.confirmAddButton)
                 confirmButton.setOnClickListener {
                     println("Complete")
                 }
@@ -121,7 +117,7 @@ class EachOrderFragment : Fragment() {
                 dismissButton.setOnClickListener {
                     orderDialog.dismiss()
                 }
-                val confirmButton = dialogBinding.findViewById<Button>(R.id.confirmButton)
+                val confirmButton = dialogBinding.findViewById<Button>(R.id.confirmAddButton)
                 confirmButton.setOnClickListener {
                     println("Complete")
                 }
