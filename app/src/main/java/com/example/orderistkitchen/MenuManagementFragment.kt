@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -49,7 +50,10 @@ class MenuManagementFragment : Fragment() {
             val dialogBinding = layoutInflater.inflate(R.layout.dialog_addmenu,null)
             val orderDialog = Dialog(requireContext())
 
-            orderDialog.setContentView(dialogBinding)
+//            orderDialog.setContentView(dialogBinding)
+
+            orderDialog.setContentView(R.layout.dialog_addmenu)
+            orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
             orderDialog.setCancelable(true)
             orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             orderDialog.show()
@@ -108,7 +112,9 @@ class MenuManagementFragment : Fragment() {
                 confirmationTitle.text = "Delete Menu?"
                 confirmationDescription.text = "Are you sure you want to delete " + menuList[position].name + "?"
 
-                orderDialog.setContentView(dialogBinding)
+
+                orderDialog.setContentView(R.layout.dialog_confirmation)
+                orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
                 orderDialog.setCancelable(true)
                 orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 orderDialog.show()

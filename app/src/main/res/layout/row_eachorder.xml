@@ -7,7 +7,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -15,16 +17,19 @@
 
         <TextView
             android:id="@+id/eachOrderQuantity"
-            android:layout_width="125dp"
-            android:layout_height="match_parent"
-            android:text="Qty." />
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:text="Qty."
+            android:textAlignment="center"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/eachOrderMenu"
-            android:layout_width="125dp"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Menu" />
+            android:text="Menu"
+            android:textSize="16sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -36,6 +41,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:textAlignment="center"
                 app:srcCompat="@drawable/tick_square" />
 
             <ImageButton
@@ -43,6 +50,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:backgroundTint="#FFFFFF"
+                android:textAlignment="center"
                 app:srcCompat="@drawable/close_square" />
         </LinearLayout>
 

@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -73,13 +74,16 @@ class EachOrderFragment : Fragment() {
                 val dialogBinding = layoutInflater.inflate(R.layout.dialog_confirmation,null)
                 val orderDialog = Dialog(requireContext())
 
+
                 val confirmationTitle = dialogBinding.findViewById<TextView>(R.id.confirmationTitle)
                 val confirmationDescription = dialogBinding.findViewById<TextView>(R.id.confirmationDescription)
 
                 confirmationTitle.text = "Menu Complete?"
                 confirmationDescription.text = "Are you sure the " + orderList[position].name + " is completed?"
 
-                orderDialog.setContentView(dialogBinding)
+
+                orderDialog.setContentView(R.layout.dialog_confirmation)
+                orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
                 orderDialog.setCancelable(true)
                 orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 orderDialog.show()
@@ -108,7 +112,9 @@ class EachOrderFragment : Fragment() {
                 confirmationTitle.text = "Reject Menu"
                 confirmationDescription.text = "Are you sure you want to reject " + orderList[position].name + "?"
 
-                orderDialog.setContentView(dialogBinding)
+
+                orderDialog.setContentView(R.layout.dialog_confirmation)
+                orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
                 orderDialog.setCancelable(true)
                 orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
                 orderDialog.show()
