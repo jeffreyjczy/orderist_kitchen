@@ -1,7 +1,8 @@
 package com.example.orderistkitchen
+//import com.google.firebase.database.IgnoreExtraProperties
 
-class Menu (
-    val name: String = "",
-    // show or hidden
-    var isVisible: Boolean = true
+//@IgnoreExtraProperties
+data class Menu (
+    var name: String? = "",
+    var isVisible: Boolean? = true
 )
