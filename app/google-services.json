@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:963523521354:android:e01acfade699bf005b2fb3",
+        "android_client_info": {
+          "package_name": "com.example.firebasetest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "963523521354-outujj3rths4h8k3fj1qbh0tl0o3gutg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP6B4yhKuFzlklE-ilowOiCOdVnx28pT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "963523521354-outujj3rths4h8k3fj1qbh0tl0o3gutg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:963523521354:android:020d563f770124bb5b2fb3",
         "android_client_info": {
           "package_name": "com.example.orderistkitchen"

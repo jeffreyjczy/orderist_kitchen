@@ -4,5 +4,6 @@ package com.example.orderistkitchen
 //@IgnoreExtraProperties
 data class Menu (
     var name: String? = "",
-    var isVisible: Boolean? = true
+    var isVisible: Boolean? = true,
+    var id: String? =""
 )

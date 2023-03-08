@@ -3,20 +3,28 @@ package com.example.orderistkitchen
 import android.os.Parcelable
 import android.os.Parcel as Parcel
 
-//class Orders (
+//data class Orders (
 //    val tableNo: Int = 0,
-//    val orders: ArrayList<Food>
+//    val orders: ArrayList<Food> = ArrayList<Food>(),
+//    var id: String =""
 //)
 
-class Orders(var tableNo: Int, var orders: ArrayList<Food>): Parcelable {
+data class Orders(
+    val tableNo: Int = 0,
+    val orders: ArrayList<Food?> = ArrayList<Food?>(),
+    var id: String = ""
+) : Parcelable {
+
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
-        parcel.readArrayList(Food::class.java.classLoader) as ArrayList<Food>
+        parcel.createTypedArrayList(Food.CREATOR)!!,
+        parcel.readString()!!
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(tableNo)
-        parcel.writeList(orders)
+        parcel.writeTypedList(orders)
+        parcel.writeString(id)
     }
 
     override fun describeContents(): Int {
@@ -33,3 +41,5 @@ class Orders(var tableNo: Int, var orders: ArrayList<Food>): Parcelable {
         }
     }
 }
+
+

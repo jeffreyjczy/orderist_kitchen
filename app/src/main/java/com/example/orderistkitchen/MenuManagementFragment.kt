@@ -16,12 +16,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import kotlinx.android.synthetic.main.fragment_menu_management.*
 import kotlinx.android.synthetic.main.row_menu_management.view.*
 
 
 class MenuManagementFragment : Fragment() {
 
-//    private lateinit var database: DatabaseReference
+    val database = FirebaseDatabase.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,32 +34,46 @@ class MenuManagementFragment : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        val menuList = listOf(
-            Menu("Chicken Fried Rice"),
-            Menu("Tomyam Kung"),
-            Menu("SomTam Thai"),
-            Menu("Masala Chai"),
-            Menu("Kulche"),
-            Menu("Dhoka"),
-            Menu("Jalebi"),
-            Menu("Pizza Hawaiian")
-        )
-
+        val database = FirebaseDatabase.getInstance()
+        val myRef = database.getReference("Menus")
         val t = inflater.inflate(R.layout.fragment_menu_management, container, false)
-
-
-
+        val menuList = ArrayList<Menu>()
         val menuManagementView = t.findViewById<RecyclerView>(R.id.menuManagementView)
+
+        // Set up the RecyclerView adapter
+        val adapter = MenuManagementAdapter(menuList)
         menuManagementView.layoutManager = LinearLayoutManager(context)
-        menuManagementView.adapter = MenuManagementAdapter(menuList)
+        menuManagementView.adapter = adapter
+
+
+        myRef.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                // Clear the current list of menus
+                menuList.clear()
+
+                // Get list of Menu objects from the dataSnapshot
+                for (childSnapshot in dataSnapshot.children) {
+                    val menu = childSnapshot.getValue(Menu::class.java)
+                    menu?.id = childSnapshot.key
+                    menuList.add(menu!!)
+                }
+
+                // Notify the adapter that the data has changed
+                adapter.notifyDataSetChanged()
+            }
+
+
+            override fun onCancelled(error: DatabaseError) {
+                // Handle the error
+            }
+        })
+
 
         val addMenuBtn = t.findViewById<Button>(R.id.addMenuBtn)
         addMenuBtn.setOnClickListener {
             // pop up dialog
             val dialogBinding = layoutInflater.inflate(R.layout.dialog_addmenu,null)
             val orderDialog = Dialog(requireContext())
-
-
 
             orderDialog.setContentView(R.layout.dialog_addmenu)
             orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
@@ -68,9 +87,14 @@ class MenuManagementFragment : Fragment() {
 
             confirmAddButton.setOnClickListener {
                 val name = newMenuText.text.toString()
-                val newMenu = Menu(name)
 
-                addMenu("ygasf")
+
+                val myRef = database.getReference("Menus")
+                val newMenuRef = myRef.push() // generate a new key for the new menu
+                val newMenu = Menu(name,true)
+                newMenuRef.setValue(newMenu)
+//                menuList.add(newMenu)
+                orderDialog.dismiss()
 
 
             }
@@ -81,32 +105,19 @@ class MenuManagementFragment : Fragment() {
         return t
     }
 
-    private fun addMenu(name: String) {
-        // Push the new menu to the Firebase Realtime Database
-//        database = FirebaseDatabase.getInstance().getReference("Menus")
-//
-//        val databaseReference = FirebaseDatabase.getInstance().reference
-//        val id = databaseReference.push().key
-//
-//        database.child(id.toString()).setValue(name).addOnSuccessListener {
-//            Toast.makeText(context,"Success",Toast.LENGTH_SHORT).show()
-//        }.addOnFailureListener {
-//            Toast.makeText(context,it.toString(),Toast.LENGTH_SHORT).show()
-//        }
-//        orderDialog.dismiss()
-    }
-
     inner class MenuManagementHolder(view: View): RecyclerView.ViewHolder(view){
         val menuText = itemView.menuText
         val toggleShowBtn = itemView.toggleShowBtn
         val deleteBtn = itemView.deleteBtn
 
     }
-    inner class MenuManagementAdapter (var menuList: List<Menu>): RecyclerView.Adapter<MenuManagementHolder>() {
+    inner class MenuManagementAdapter (var menuList: ArrayList<Menu>): RecyclerView.Adapter<MenuManagementHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MenuManagementHolder {
             val view = layoutInflater.inflate(R.layout.row_menu_management, parent, false)
             return MenuManagementHolder(view)
         }
+
+
         override fun onBindViewHolder(holder: MenuManagementHolder, position: Int) {
 
 //            holder.orderText.text = "Order Table " + orderList[position].tableNo.toString()
@@ -122,8 +133,12 @@ class MenuManagementFragment : Fragment() {
                 menuList[position].isVisible = !menuList[position].isVisible!!
                 if (menuList[position].isVisible == true) {
                     holder.toggleShowBtn.setImageResource(R.drawable.show)
+                    database.getReference("Menus/${menuList[position].id}/visible").setValue(true)
+
                 } else {
                     holder.toggleShowBtn.setImageResource(R.drawable.hide)
+                    database.getReference("Menus/${menuList[position].id}/visible").setValue(false)
+
                 }
             }
 
@@ -138,8 +153,7 @@ class MenuManagementFragment : Fragment() {
                 confirmationTitle.text = "Delete Menu?"
                 confirmationDescription.text = "Are you sure you want to delete " + menuList[position].name + "?"
 
-
-                orderDialog.setContentView(R.layout.dialog_confirmation)
+                orderDialog.setContentView(dialogBinding)
                 orderDialog.window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT)
                 orderDialog.setCancelable(true)
                 orderDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -151,11 +165,15 @@ class MenuManagementFragment : Fragment() {
                 }
                 val confirmButton = dialogBinding.findViewById<Button>(R.id.confirmAddButton)
                 confirmButton.setOnClickListener {
+
+                    val myRef = database.getReference("Menus/${menuList[position].id}")
+                    myRef.removeValue()
+//                    menuList.removeAt(position)
                     println("Complete")
+                    orderDialog.dismiss()
+
                 }
             }
-
-
 
 
 
