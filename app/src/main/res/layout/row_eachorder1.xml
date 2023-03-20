@@ -8,8 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="30dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,6 +17,7 @@
             android:id="@+id/eachOrderQuantity1"
             android:layout_width="50dp"
             android:layout_height="30dp"
+            android:gravity="center_vertical"
             android:text="Qty."
             android:textAlignment="center"
             android:textSize="16sp" />
@@ -27,7 +26,9 @@
             android:id="@+id/eachOrderMenu1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
             android:text="Menu"
             android:textSize="16sp" />
 
@@ -35,9 +36,12 @@
             android:id="@+id/eachOrderStatus1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginRight="24dp"
             android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingRight="0dp"
             android:text="TextView"
-            android:textAlignment="center" />
+            android:textAlignment="viewEnd" />
 
     </LinearLayout>
 

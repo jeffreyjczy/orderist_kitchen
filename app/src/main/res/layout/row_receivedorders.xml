@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp">
 
     <LinearLayout
         android:id="@+id/orderRow"
@@ -18,6 +20,7 @@
             android:id="@+id/eachOrderQuantity"
             android:layout_width="308dp"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:paddingStart="10sp"
             android:text="TextView"
             android:textSize="16sp" />
@@ -29,5 +32,17 @@
             android:layout_weight="1"
             app:srcCompat="@drawable/arrow___right_2" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/orderRow" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
