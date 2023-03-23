@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuManagementFragment">
+    tools:context=".MenuManagementFragment"
+    android:background="@color/background">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -43,7 +44,9 @@
             android:layout_marginLeft="0dp"
             android:layout_marginTop="14dp"
             android:layout_marginEnd="24dp"
-            android:text="Add Menu" />
+            android:backgroundTint="@color/button"
+            android:text="Add Menu"
+            app:cornerRadius="8dp" />
     </LinearLayout>
 
     <LinearLayout

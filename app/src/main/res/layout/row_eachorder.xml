@@ -43,16 +43,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
                 android:textAlignment="center"
-                app:srcCompat="@drawable/tick_square" />
+                android:backgroundTint="@color/background"
+                app:srcCompat="@drawable/tick_square"
+                />
 
             <ImageButton
                 android:id="@+id/eachOrderAction2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@color/background"
                 android:textAlignment="center"
                 app:srcCompat="@drawable/close_square" />
         </LinearLayout>

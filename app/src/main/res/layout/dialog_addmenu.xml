@@ -13,6 +13,7 @@
         app:cardCornerRadius="8dp"
         app:cardBackgroundColor="@android:color/white"
         app:cardUseCompatPadding="true"
+        android:backgroundTint="@color/background"
         >
 
         <LinearLayout
@@ -43,13 +44,14 @@
             <Button
                 android:id="@+id/confirmAddButton"
                 android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:background="@drawable/rounded_button"
+                android:layout_height="45dp"
+                android:backgroundTint="@color/button"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:text="Add"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:cornerRadius="8dp" />
 
         </LinearLayout>
 
