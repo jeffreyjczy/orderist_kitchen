@@ -6,8 +6,10 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/eachoreder_layout"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_marginTop="8dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +45,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAlignment="center"
                 android:backgroundTint="@color/background"
-                app:srcCompat="@drawable/tick_square"
-                />
+                android:textAlignment="center"
+                app:srcCompat="@drawable/tick_square" />
 
             <ImageButton
                 android:id="@+id/eachOrderAction2"
@@ -59,5 +60,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/eachoreder_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

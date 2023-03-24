@@ -44,13 +44,14 @@
             <Button
                 android:id="@+id/confirmAddButton"
                 android:layout_width="wrap_content"
-                android:layout_height="45dp"
+                android:layout_height="55dp"
+                android:layout_gravity="right"
                 android:backgroundTint="@color/button"
                 android:paddingTop="0dp"
                 android:paddingBottom="0dp"
                 android:text="Add"
                 android:textColor="@color/white"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 app:cornerRadius="8dp" />
 
         </LinearLayout>
